@@ -53,8 +53,57 @@ public class StudentDao implements StudentDaoInterface{
 
 	@Override
 	public boolean updateStudent(int regNumber, String updated, int ch, StudentDTO st) {
+		boolean done=false;
+		try {
+			Connection con=DBConnection.getDBConnection();
+			if(ch==1) {
+				String query="UPDATE students_details SET name = ? WHERE registration_number = ?";
+				PreparedStatement pst=con.prepareStatement(query);
+				pst.setString(1, updated);
+				pst.setInt(2, regNumber);
+				int affected = pst.executeUpdate();
+				if(affected>0) {
+					System.out.println("Student name updated successfully!!\nNew name : "+updated);
+					done = true;
+				}else {
+					System.out.println("Please try again, Student name not updated!!");
+					done = false;
+				}
+			}
+			if(ch==2) {
+				String query="UPDATE students_details SET city = ? WHERE registration_number = ?";
+				PreparedStatement pst=con.prepareStatement(query);
+				pst.setString(1, updated);
+				pst.setInt(2, regNumber);
+				int affected = pst.executeUpdate();
+				if(affected>0) {
+					System.out.println("Student city updated successfully!!\nNew city : "+updated);
+					done = true;
+				}else {
+					System.out.println("Please try again, Student city not updated!!");
+					done = false;
+				}
+			}
+			if(ch==3) {
+				String query="UPDATE students_details SET age = ? WHERE registration_number = ?";
+				PreparedStatement pst=con.prepareStatement(query);
+				pst.setInt(1, Integer.parseInt(updated));
+				pst.setInt(2, regNumber);
+				int affected = pst.executeUpdate();
+				if(affected>0) {
+					System.out.println("Student age updated successfully!!\nNew age : "+updated);
+					done = true;
+				}else {
+					System.out.println("Please try again, Student age not updated!!");
+					done = false;
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return false;
+		return done;
 	}
 
 	@Override

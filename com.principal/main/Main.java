@@ -40,7 +40,7 @@ public class Main {
         	}
         	break;
         case 3 :
-        	
+        	updateLogic();
         	break;
         case 4 :
     		System.out.println("Find Student By Registration Number");
@@ -65,5 +65,57 @@ public class Main {
         }
 }
 	}
+	
+	static void updateLogic() {
+		StudentDaoInterface dao = new StudentDao();
+		Scanner input = new Scanner(System.in);
+		Scanner in = new Scanner(System.in);
+    	System.out.println("Update Student By Registration Number");
+		System.out.println("-----------------------------------");
+		System.out.println("Please enter a choice to update :\n1 - Update name\n2 - Update city\n3 - Update age");
+		int ch=input.nextInt();
+		System.out.print("Please enter the RN : ");
+		int regsNum=input.nextInt();
+		StudentDTO std=new StudentDTO();
+		if(ch==1) {
+			System.out.print("Please enter the new name : ");
+			String updatedName = in.nextLine();
+			std.setName(updatedName);
+			dao.updateStudent(regsNum, updatedName, ch, std);
+			askForUpdate();
+			}
+		if(ch==2) {
+			System.out.print("Please enter the new city : ");
+			String updatedCity = in.nextLine();
+			std.setName(updatedCity);
+			dao.updateStudent(regsNum, updatedCity, ch, std);
+			askForUpdate();
+		}
+		if(ch==3) {
+			System.out.print("Please enter the new age : ");
+			String updatedAge = in.nextLine();
+			std.setAge(Integer.parseInt(updatedAge));
+			dao.updateStudent(regsNum, updatedAge, ch, std);
+			askForUpdate();
+		}
+		System.out.println();
+	}
+	static void askForUpdate() {
+		Scanner input = new Scanner(System.in);
+			System.out.println("Do you want to update something else?");
+			System.out.println("-----------------------------------");
+			System.out.println("1 - Yes\n2 - No");
+			int ch1=input.nextInt();
+			switch(ch1) {
+			case 1:
+				updateLogic();
+				break;
+			case 2:
+				System.out.println();
+				break;
+			default : 
+				System.out.println("DPlease choose a correct answer!!!!");		
+			}
+		}
+	}
 
-}
