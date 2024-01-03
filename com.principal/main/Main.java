@@ -43,10 +43,19 @@ public class Main {
         	
         	break;
         case 4 :
-        	
+    		System.out.println("Find Student By Registration Number");
+    		System.out.println("-----------------------------------");
+    		System.out.print("Please enter the RN : ");
+    		int regNum=input.nextInt();
+    		System.out.println();
+            dao.searchStudentByRegNumber(regNum);
         	break;
         case 5 :
-        	
+        	System.out.println("Delete Student By Registration Number");
+    		System.out.println("-----------------------------------");
+    		System.out.print("Please enter the RN : ");
+    		int regiNum=input.nextInt();
+            dao.deleteStudent(regiNum);
         	break;
         case 6 :
         	System.out.println("Thanks for using Student Management System\nGood Bye!!!");
