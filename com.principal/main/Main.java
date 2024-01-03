@@ -65,7 +65,7 @@ public class Main {
         }
 }
 	}
-	
+	// Method that asks for update fields wanted by the user
 	static void updateLogic() {
 		StudentDaoInterface dao = new StudentDao();
 		Scanner input = new Scanner(System.in);
@@ -82,6 +82,7 @@ public class Main {
 			String updatedName = in.nextLine();
 			std.setName(updatedName);
 			dao.updateStudent(regsNum, updatedName, ch, std);
+			//Call of the Method inside updateLogic() to keep asking if other update wanted any time we make an update
 			askForUpdate();
 			}
 		if(ch==2) {
@@ -89,6 +90,7 @@ public class Main {
 			String updatedCity = in.nextLine();
 			std.setName(updatedCity);
 			dao.updateStudent(regsNum, updatedCity, ch, std);
+			//Call of the Method inside updateLogic() to keep asking if other update wanted any time we make an update
 			askForUpdate();
 		}
 		if(ch==3) {
@@ -96,10 +98,13 @@ public class Main {
 			String updatedAge = in.nextLine();
 			std.setAge(Integer.parseInt(updatedAge));
 			dao.updateStudent(regsNum, updatedAge, ch, std);
+			//Call of the Method inside updateLogic() to keep asking if other update wanted any time we make an update
 			askForUpdate();
 		}
 		System.out.println();
 	}
+	
+	//Method for asking the user if he wants to make other update
 	static void askForUpdate() {
 		Scanner input = new Scanner(System.in);
 			System.out.println("Do you want to update something else?");
